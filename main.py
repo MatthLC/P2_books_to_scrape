@@ -1,3 +1,4 @@
+import csv
 import requests
 from bs4 import BeautifulSoup
 
@@ -15,6 +16,7 @@ db = {	 "product_page_url":"product_page_url"
 
 url = 'http://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html'
 check_url = requests.get(url)
+
 
 if check_url.ok:
 
@@ -62,7 +64,11 @@ if check_url.ok:
 
 	print("=============================")
 	print(db)
-	
+
+with open('book1.csv', 'w') as create_csv:
+	writer = csv.DictWriter(create_csv,db.keys())
+	writer.writeheader()
+	writer.writerow(db)
 
 	
 
